@@ -97,12 +97,15 @@ if canStart == True:
             LANG = csv_data[lang_data[j]][i]
             file_data[PAGE][KEY][APPNAME] = LANG
 
-        json_file_name = path_json+"string_"+lang_data[j]+".json"
+        #json_file_name = path_json+"string_"+lang_data[j]+".json"
+        first_file_name = "./strings" if j == 0 else path_json+"string_"+lang_data[j]
+        json_file_name = first_file_name + ".i18n.json"
         name_data.append(json_file_name)
 
+        #with open(json_file_name, 'w') as outfile:
         with open(json_file_name, 'w') as outfile:
-            #json.dump(file_data, outfile,ensure_ascii = False,indent="\t")
-            json.dump(file_data, outfile,ensure_ascii = False)
+            #json.dump(file_data, outfile,ensure_ascii = False)
+            json.dump(file_data, outfile,ensure_ascii = False,indent="\t")
 
     print("Completed convert!!\n")
     print("List of generated json files : ")
