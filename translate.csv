@@ -1,0 +1,9 @@
+﻿PAGE,KEY,APP_NAME,ko,en,ja
+MainPage,Button,button,버튼,Button,ボタン
+,,yes,네,Yes,はい
+,,no,아니오,No,いいえ
+,,agree,동의,Agree,同意
+,,reject,거절,Reject,拒絶
+,Normal,signup,회원가입,Sign Up,会員登録
+,,withdrawal,회원탈퇴,Withdrawal,会員脱退
+TestPage,Test,sign123,싸인,sign,이거슨테스트
