@@ -101,7 +101,8 @@ if canStart == True:
         name_data.append(json_file_name)
 
         with open(json_file_name, 'w') as outfile:
-            json.dump(file_data, outfile,ensure_ascii = False,indent="\t")
+            #json.dump(file_data, outfile,ensure_ascii = False,indent="\t")
+            json.dump(file_data, outfile,ensure_ascii = False)
 
     print("Completed convert!!\n")
     print("List of generated json files : ")
