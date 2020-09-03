@@ -17,10 +17,12 @@ def isNaN(num):
         return num != num
 
 # 시작 가능한지 확인
-# .csv 파일일 경우에만 시작 할 수 있음
+# .csv 파일일 경우에만 시작 할 수 있음장
+# --- argv 입력목록 ---
 # [0] = main.py
 # [1] = 입력할 csv 파일의 경로
 # [2] = 저장될 json파일의 경로
+# -------------------
 def checkStart(input):
     _path_csv = input[1]
     _path_json = input[2]
@@ -76,30 +78,31 @@ if canStart == True:
     print("Number of words to convert : ",col)
     print("Language list :",lang_data)
     print("Converting Now...\n")
-    # for list in lang_data:
-    #     print(list)
-
+    
+    # csv에 있는 언어의 수만큼 반복됨
     for j in range(0, len_lang):
-        PAGE = ''
-        KEY = ''
-        APPNAME = ''
-        LANG = ''
-        # Page for문
+        PAGE = KEY = APPNAME = LANG = ''
+        # csv에 있는 단어의 갯수만큼 반복됨(세로줄)
         for i in  range(0, col):
+            # 페이지칸이 공백이 아닐경우 json 맨 앞의 값은 해당 값이됨
             if isNaN( csv_data['PAGE'][i] ) == False :
                 PAGE = csv_data['PAGE'][i]
                 file_data[PAGE] = {}
+            # Key 칸이 공백이 아닐경우 json 두번째 값은 해당값이 됨
             if isNaN( csv_data['KEY'][i] ) == False :
                 KEY = csv_data['KEY'][i]
                 file_data[PAGE][KEY] = {}
-
+            
+            # json['page']['app_name'][i] 와 같은 형식으로 저장됨
+            # i 의 값은 총 단어의 갯수임
             APPNAME = csv_data['APP_NAME'][i]
             LANG = csv_data[lang_data[j]][i]
             file_data[PAGE][KEY][APPNAME] = LANG
 
-        #json_file_name = path_json+"string_"+lang_data[j]+".json"
-        first_file_name = "./strings" if j == 0 else path_json+"string_"+lang_data[j]
-        json_file_name = first_file_name + ".i18n.json"
+        # 첫번째 언어가 기본이라서 만약 첫번째 언어면 파일명을 Strings로
+        # 아니라면 string_en 같은 형식으로 파일이름을 저장
+        language_name = "strings" if j == 0 else "string_"+lang_data[j]
+        json_file_name = path_json+language_name + ".i18n.json"
         name_data.append(json_file_name)
 
         #with open(json_file_name, 'w') as outfile:
